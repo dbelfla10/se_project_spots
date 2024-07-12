@@ -19,6 +19,8 @@
 .profile__name {
   margin: 0 0 12px;
   padding: 0;
+  font-weight: 500;
+  font-size: 32px;
 }
 
 .profile__description {
@@ -37,6 +39,8 @@
   gap: 8px;
   color: #212121;
   opacity: 0.7;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .profile__edit-button:hover {
@@ -55,6 +59,9 @@
   gap: 8px;
   border-radius: 8px;
   border: none;
+  align-items: center;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .profile__add-button:hover {
