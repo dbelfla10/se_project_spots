@@ -1,6 +1,6 @@
 # Spots Project
 
-![alt text](./images/demo/Spots%20App%201440px.jpg)
+![Spots App](./images/demo/Spots%20App%201440px.jpg)
 
 ## Description
 
@@ -12,6 +12,12 @@ Spots is an app where you can create a profile and upload images of places that 
 - CSS
 - Responsive Grid
 - CSS Media Queries
+
+## Features
+
+Responside design was implemented for devices with screen width less than 627px.
+
+![Spots App mobile](./images/demo/Spots_app_mobile.JPG)
 
 ## Deployment
 
