@@ -43,6 +43,15 @@
   cursor: pointer;
 }
 
+.card__like-button_liked {
+  background-image: url(../images/State_Liked_icon.svg);
+  opacity: 1;
+}
+
+.card__like-button_liked:hover {
+  background-image: url(../images/Liked_icon_hover.svg);
+}
+
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
