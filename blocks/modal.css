@@ -28,6 +28,10 @@
 .modal__container_type_preview {
   padding: 0;
   background: transparent;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  max-width: 80vw;
 }
 
 .modal__image {
@@ -48,6 +52,7 @@
   font-size: 24px;
   font-weight: 500;
   line-height: 1.2;
+  width: fit-content;
 }
 
 .modal__close-btn {
