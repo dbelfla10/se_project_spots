@@ -138,4 +138,17 @@
   .modal__submit-button {
     width: 100%;
   }
+
+  .modal__image {
+    border-radius: 4px;
+  }
+
+  .modal__caption {
+    font-size: 16px;
+  }
+
+  .modal__close-btn_type_preview {
+    top: -32px;
+    right: 0px;
+  }
 }
