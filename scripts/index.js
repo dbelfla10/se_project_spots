@@ -41,6 +41,8 @@ const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
+const formModals = document.querySelectorAll(".modal");
+
 const closeButtons = document.querySelectorAll(".modal__close-btn");
 
 const cardModal = document.querySelector("#add-card-modal");
@@ -88,12 +90,34 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function CloseModalEsc(evt) {
+  if (evt.key === "Escape") {
+    const modalOpened = document.querySelector(".modal_opened");
+    if (modalOpened) {
+      closeModal(modalOpened);
+    }
+  }
+}
+
+function closeModalClick(evt) {
+  if (
+    evt.target === evt.currentTarget ||
+    evt.target.classList.contains("modal_opened")
+  ) {
+    closeModal(evt.currentTarget);
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", CloseModalEsc);
+  modal.addEventListener("mousedown", closeModalClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", CloseModalEsc);
+  modal.removeEventListener("mousedown", closeModalClick);
 }
 
 function handleEditFormSubmit(evt) {
