@@ -5,7 +5,7 @@ import {
   resetValidation,
   disableButton,
 } from "../scripts/validation.js";
-import Api from "../scripts/Api.js";
+import Api from "../utils/Api.js";
 
 // const initialCards = [
 //   {
@@ -46,12 +46,19 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((cards) => {
-  cards.forEach((item) => {
-    const cardElement = getCardElement(item);
-    cardsList.prepend(cardElement);
+api
+  .getAppInfo()
+  .then(([userData, cards]) => {
+    profileName.textContent = userData.name;
+    profileDescription.textContent = userData.about;
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.prepend(cardElement);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
   });
-});
 
 const profileEditButton = document.querySelector(".profile__edit-button");
 const newPostButton = document.querySelector(".profile__add-button");
@@ -146,9 +153,17 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 function handleAddCardSubmit(evt) {
