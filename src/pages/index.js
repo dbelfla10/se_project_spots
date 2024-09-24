@@ -90,6 +90,8 @@ const avatarSubmitButton = avatarModal.querySelector(".modal__submit-button");
 const avatarLinkInput = avatarModal.querySelector("#profile-avatar-input");
 const avatarImage = document.querySelector(".profile__image");
 
+const deleteModal = document.querySelector("#delete-modal");
+
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
@@ -123,7 +125,8 @@ function getCardElement(data) {
   });
 
   cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
+    // cardElement.remove();
+    openModal(deleteModal);
   });
 
   return cardElement;
@@ -180,6 +183,7 @@ function handleAvatarSubmit(evt) {
     .editAvatarInfo(avatarLinkInput.value)
     .then((data) => {
       avatarImage.src = data.avatar;
+      disableButton(cardSubmitButton, settings);
       closeModal(avatarModal);
       avatarLinkInput.value = "";
     })
@@ -189,11 +193,17 @@ function handleAvatarSubmit(evt) {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement);
-  cardForm.reset();
-  disableButton(cardSubmitButton, settings);
-  closeModal(cardModal);
+  api
+    .addCard(inputValues)
+    .then((data) => {
+      const cardElement = getCardElement(data);
+      cardsList.prepend(cardElement);
+      disableButton(cardSubmitButton, settings);
+      closeModal(cardModal);
+      cardNameInput.value = "";
+      cardLinkInput.value = "";
+    })
+    .catch(console.error);
 }
 
 profileEditButton.addEventListener("click", () => {
