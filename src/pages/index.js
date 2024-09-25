@@ -111,7 +111,6 @@ function handleDeleteCard(cardElement, cardId) {
 }
 
 function handleLike(evt, cardId) {
-  // cardLikeButton.classList.toggle("card__like-button_liked");
   const isLiked = evt.target.classList.contains("card__like-button_liked");
 
   api
@@ -190,6 +189,10 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+
+  const submitButton = evt.submitter;
+  submitButton.textContent = "Saving...";
+
   api
     .editUserInfo({
       name: editModalNameInput.value,
@@ -200,24 +203,38 @@ function handleEditFormSubmit(evt) {
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      submitButton.textContent = "Save";
+    });
 }
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
+
+  const submitButton = evt.submitter;
+  submitButton.textContent = "Saving...";
+
   api
     .editAvatarInfo(avatarLinkInput.value)
     .then((data) => {
       avatarImage.src = data.avatar;
-      disableButton(cardSubmitButton, settings);
+      disableButton(avatarSubmitButton, settings);
       closeModal(avatarModal);
       avatarLinkInput.value = "";
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      submitButton.textContent = "Save";
+    });
 }
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
+
+  const submitButton = evt.submitter;
+  submitButton.textContent = "Saving...";
+
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   api
     .addCard(inputValues)
@@ -229,10 +246,16 @@ function handleAddCardSubmit(evt) {
       cardNameInput.value = "";
       cardLinkInput.value = "";
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      submitButton.textContent = "Save";
+    });
 }
 
 function handleDeleteSubmit(evt) {
+  const deleteButton = evt.submitter;
+  deleteButton.textContent = "Deleting...";
+
   evt.preventDefault();
   api
     .deleteCard(selectedCardId)
@@ -240,7 +263,10 @@ function handleDeleteSubmit(evt) {
       selectedCard.remove();
       closeModal(deleteModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      deleteButton.textContent = "Delete";
+    });
 }
 
 profileEditButton.addEventListener("click", () => {
