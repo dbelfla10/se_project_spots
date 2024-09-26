@@ -66,10 +66,12 @@
 .card__like-button_liked {
   background-image: url(../images/liked_icon.svg);
   opacity: 1;
+  background-repeat: no-repeat;
 }
 
 .card__like-button_liked:hover {
   background-image: url(../images/liked_icon_hover.svg);
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 627px) {
