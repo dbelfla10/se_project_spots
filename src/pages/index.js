@@ -157,7 +157,7 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function CloseModalEsc(evt) {
+function closeModalEsc(evt) {
   if (evt.key === "Escape") {
     const modalOpened = document.querySelector(".modal_opened");
     if (modalOpened) {
@@ -177,13 +177,13 @@ function closeModalClick(evt) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", CloseModalEsc);
+  document.addEventListener("keydown", closeModalEsc);
   modal.addEventListener("mousedown", closeModalClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", CloseModalEsc);
+  document.removeEventListener("keydown", closeModalEsc);
   modal.removeEventListener("mousedown", closeModalClick);
 }
 
