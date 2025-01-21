@@ -20,11 +20,16 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            src="<%= require('./images/avatar.jpg') %>"
-            alt="Bessie avatar"
-            class="profile__image"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-button">
+              <img
+                class="profile__pencil-icon"
+                src="<%= require('./images/pen_icon_white.svg') %>"
+                alt="Pencil icon"
+              />
+            </button>
+            <img src="" alt="Bessie avatar" class="profile__image" />
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -66,7 +71,7 @@
           <button type="submit" class="modal__close-btn">
             <img
               alt="x icon"
-              src="./images/Close__button.svg"
+              src="<%= require('./images/Close__button.svg') %>"
               class="modal__close-btn-icon"
             />
           </button>
@@ -110,7 +115,7 @@
           <button type="submit" class="modal__close-btn">
             <img
               alt="x icon"
-              src="./images/Close__button.svg"
+              src="<%= require('./images/Close__button.svg') %>"
               class="modal__close-btn-icon"
             />
           </button>
@@ -155,12 +160,71 @@
           >
             <img
               alt="x icon"
-              src="./images/close_button_white.svg"
+              src="<%= require('./images/close_button_white.svg') %>"
               class="modal__close-btn-icon"
             />
           </button>
           <img class="modal__image" src="" alt="" />
           <p class="modal__caption"></p>
+        </div>
+      </div>
+
+      <div class="modal" id="avatar-modal">
+        <div class="modal__container">
+          <button type="submit" class="modal__close-btn">
+            <img
+              alt="x icon"
+              src="<%= require('./images/Close__button.svg') %>"
+              class="modal__close-btn-icon"
+            />
+          </button>
+          <h2 class="modal__title">Edit profile avatar</h2>
+          <form id="edit-profile-avatar" class="modal__form" novalidate>
+            <label for="profile-avatar-input" class="modal__label">
+              Profile Picture
+              <input
+                id="profile-avatar-input"
+                type="url"
+                class="modal__input"
+                placeholder="Paste the link to an image"
+                name="avatar"
+                required
+              />
+              <span id="profile-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button type="submit" class="modal__submit-button">Save</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal" id="delete-modal">
+        <div class="modal__container modal__container-delete">
+          <button
+            type="submit"
+            class="modal__close-btn modal__close-btn_type_preview"
+          >
+            <img
+              alt="x icon"
+              src="<%= require('./images/close_button_white.svg') %>"
+              class="modal__close-btn-icon"
+            />
+          </button>
+          <h2 class="modal__title-delete">
+            Are you sure you want to delete this image?
+          </h2>
+          <form
+            id="delete-form"
+            class="modal__form modal__form-delete"
+            novalidate
+          >
+            <button
+              type="submit"
+              class="modal__submit-button modal__delete-button"
+            >
+              Delete
+            </button>
+            <button type="button" class="modal__cancel-button">Cancel</button>
+          </form>
         </div>
       </div>
     </div>
