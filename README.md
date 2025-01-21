@@ -1,6 +1,6 @@
 # Spots Project
 
-![Spots App](./images/demo/Spots%20App%201440px.jpg)
+![Spots App](./src/images/demo/Spots%20App%201440px.jpg)
 
 ## Description
 
@@ -17,7 +17,7 @@ Spots is an app where you can create a profile and upload images of places that 
 
 Responside design was implemented for devices with screen width less than 627px.
 
-![Spots App mobile](./images/demo/Spots_app_mobile.JPG)
+![Spots App mobile](./src/images/demo/Spots_app_mobile.JPG)
 
 ## Deployment
 
